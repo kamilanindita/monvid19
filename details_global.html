@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/images/icon.png">
+
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <title>Monvid-19</title>
+
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+      <a class="navbar-brand" href="/"><img src="/images/logo.png" alt="logo"></a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="details_global.html">Global <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="details_indonesia.html">Indonesia</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+</header>
+
+<div style="margin-top:30px;" class="container">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card text-white">
+          <img class="card-img-top" src="/images/global.jpg" style="opacity:1" alt="Card image">
+          <div class="card-img-overlay">
+            <h4 class="card-title text-center">Global</h4>
+            <br>
+            <div id="globals" class="card-text">Loading...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="container-fluid">
+    <h2 class="text-center">Global</h2>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr style="background-color:#b30000; color:#fff">
+            <th scope="col">Country</th>
+            <th scope="col">NewConfirmed</th>
+            <th scope="col">TotalConfirmed</th>
+            <th scope="col">NewDeaths</th>
+            <th scope="col">TotalDeaths</th>
+            <th scope="col">NewRecovered</th>
+            <th scope="col">TotalRecovered</th>
+          </tr>
+        </thead>
+        <tbody id="tabel_country">
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="copyright">
+          &copy; Copyright 2020 <strong>Kamil Anindita</strong>.
+        </div>
+        <div class="credits">
+          Designed with <strong><i class="fa fa-heart" style="color:red"></i></strong></a>
+        </div>
+  </div>
+</footer>
+
+<script src="/js/jquery-3.4.1.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "name": "Monvid19",
+  "short_name": "Monvid19",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3",
+  "display": "standalone",
+  "orientation": "portrait",
+  "Scope": "/",
+  "start_url": "/index.html",
+  "icons": [{
+    "src": "images/icons/icon36.png",
+    "sizes": "36x36",
+    "type": "image/png"
+  }, {
+    "src": "images/icons/icon48.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  },{
+    "src": "images/icons/icon72.png",
+    "sizes": "72x72",
+    "type": "image/png"
+  }, {
+    "src": "images/icons/icon96.png",
+    "sizes": "96x96",
+    "type": "image/png"
+  }, {
+    "src": "images/icons/icon144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  },{
+    "src": "images/icons/icon192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }],
+  "splash_pages": null
+}
