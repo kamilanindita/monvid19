@@ -7,34 +7,32 @@ function renderPage(data){
 //get summary global and country
 
   //data summary global
-  var dataResults ="<div>"
-                  +"<table>"
-                  +"<tr>"
-                  +"<td><strong>Today</strong></td>"
-                  +"<td></td>"
-                  +"<td></td>"
-                  +"<td></td>"
-                  +"</tr>"
+  var dataResults ="<table>"
                   +"<tr>"
                   +"<td><strong>NewConfirmed</strong></td>"
                   +"<td><strong>: "+ data.Global.NewConfirmed +"</strong></td>"
+                  +"</tr>"
+                  +"<tr>"
                   +"<td><strong>TotalConfirmed</strong></td>"
                   +"<td><strong>: "+ data.Global.TotalConfirmed +"</strong></td>"
                   +"</tr>"
                   +"<tr>"
                   +"<td><strong>NewDeaths</strong></td>"
                   +"<td><strong>: "+ data.Global.NewDeaths +"</strong></td>"
+                  +"</tr>"
+                  +"<tr>"
                   +"<td><strong>TotalDeaths</strong></td>"
                   +"<td><strong>: "+ data.Global.TotalDeaths +"</strong></td>"
                   +"</tr>"
                   +"<tr>"
                   +"<td><strong>NewRecovered</strong></td>"
                   +"<td><strong>: "+ data.Global.NewRecovered +"</strong></td>"
+                  +"</tr>"
+                  +"<tr>"
                   +"<td><strong>TotalRecovered</strong></td>"
                   +"<td><strong>: "+ data.Global.TotalRecovered +"</strong></td>"
                   +"</tr>"
-                  +"</table>"
-                  "</div>";
+                  +"</table>";
   $('#globals').html(dataResults)
   //data country
   var dataCountryResults=''
