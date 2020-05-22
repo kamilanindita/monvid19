@@ -4,7 +4,6 @@ var urlsToCache = [
   '/fallback.json',
   '/manifest.json',
   '/css/bootstrap.min.css',
-  '/css/header.css',
   '/css/footer.css',
   '/css/timeline.css',
   '/js/main.js',
