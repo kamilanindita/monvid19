@@ -7,6 +7,7 @@
   <!-- Favicons -->
   <link rel="icon" type="image/png" href="/images/icon.png">
 
+  <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/timeline.css">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -28,9 +29,9 @@
             <small style="font-size:10px;" class="text-muted">Global</small></a>
           <a class="nav-item nav-link active" href="details_indonesia.html">
             <i class="fa fa-list-alt fa-2x"></i><br>
-            <small style="font-size:10px;" class="text-muted">Indonesia</small></a>
+            <small style="font-size:10px;">Indonesia</small></a>
           <a class="nav-item nav-link" href="about.html">
-            <i class="fa fa-rocket fa-2x"></i><br>
+            <i class="fa fa-info-circle fa-2x"></i><br>
             <small style="font-size:10px;" class="text-muted">About</small></a>
         </div>
       </div>
@@ -44,7 +45,7 @@
         <div class="card text-white">
           <img class="card-img-top" src="/images/indo.jpg" style="opacity:1;min-height:294px" alt="indonesia">
           <div class="card-img-overlay">
-            <h4 class="card-title text-center">Indonesia</h4>
+            <h4 class="card-title text-center">Indonesi</h4>
             <br>
             <div id="indonesia" class="card-text">Loading...</div>
           </div>
@@ -53,7 +54,39 @@
     </div>
   </div>
 </div>
-
+<br>
+<div class="container">
+  <div class="container-fluid">
+    <h3>Tertinggi Perhari</h3>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card text-white">
+          <div class="card-body bg-danger">
+            <h4 class="card-title text-center">Confirmed</h4>
+            <div id="confirmed" class="card-text">Loading...</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card text-white">
+          <div class="card-body bg-dark">
+            <h4 class="card-title text-center">Deaths</h4>
+            <div id="meninggal" class="card-text">Loading...</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+          <div class="card text-white">
+            <div class="card-body bg-success">
+              <h4 class="card-title text-center">Recovered</h4>
+              <div id="sembuh" class="card-text">Loading...</div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
 <div class="container">
   <div class="container-fluid">
   <br>
@@ -90,6 +123,9 @@
 <script src="/js/popper.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/main.js"></script>
+
+
+
 
 </body>
 </html>
