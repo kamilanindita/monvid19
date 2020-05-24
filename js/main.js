@@ -121,19 +121,11 @@ $.get("https://api.covid19api.com/total/dayone/country/indonesia", function(data
 })
 
 
-//get data indonesia (timeline dan paling tinggi)
+//timeline
 $.get("https://api.covid19api.com/total/dayone/country/indonesia", function(data){
   //data timeline indonesia
   var dataResults=''
   var arr=[]
-  //paling Tertinggi
-  var positif=[]
-  var meninggal=[]
-  var sembuh=[]
-  var a=0
-  var b=0
-  var c=0
-  var hari=[]
 
   $.each(data, function(key, items){
   dataResults ="<div class='timeline'>"
@@ -146,57 +138,10 @@ $.get("https://api.covid19api.com/total/dayone/country/indonesia", function(data
                   +"Recovered   : " + items.Recovered +"</p>"
                   "</div></div>";
   arr.push(dataResults)
-  positif.push(items.Confirmed-a)
-  a=items.Confirmed
-  meninggal.push(items.Deaths-b)
-  b=items.Deaths
-  sembuh.push(items.Recovered-c)
-  c=items.Recovered
-  hari.push(items.Date)
   })
   arr.reverse()
   $('#timeline').html(arr)
-
-
-  var positifMax=Math.max(...positif)
-  var indexPos = positif.indexOf(positifMax);
-
-  var meninggalMax=Math.max(...meninggal)
-  var indexMen = meninggal.indexOf(meninggalMax);
-
-  var sembuhMax=Math.max(...sembuh)
-  var indexSem = sembuh.indexOf(sembuhMax);
-
-  var postPositif ="<div class='text-center'>"
-                  +"<p><strong>"
-                  + hari[indexPos] +"<br>"
-                  + "<h2>"+ positifMax +"</h2> "
-                  + "</strong></p>"
-                  "</div>";
-
-  var postMeninggal ="<div class='text-center'>"
-                  +"<p><strong>"
-                  + hari[indexMen] +"<br>"
-                  + "<h2>"+ meninggalMax +"</h2> "
-                  + "</strong></p>"
-                  "</div>";
-
-  var postSembuh ="<div class='text-center'>"
-                  +"<p><strong>"
-                  + hari[indexSem] +"<br>"
-                  + "<h2>"+ sembuhMax +"</h2> "
-                  + "</strong></p>"
-                  "</div>";
-
-  $('#confirmed').html(postPositif)
-  $('#meninggal').html(postMeninggal)
-  $('#sembuh').html(postSembuh)
-
 })
-
-
-
-
 
 })
 
