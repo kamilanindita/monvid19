@@ -201,6 +201,14 @@ body {
       .main-timeline4 .timeline-content {
           margin: 0 35px 0 45px
       }
+
+      .main-timeline4 .year {
+          font-size: 20px;
+      }
+
+      .main-timeline4 .description {
+          font-size: 9px;
+      }
   }
 
 

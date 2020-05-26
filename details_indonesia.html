@@ -130,7 +130,27 @@
     </figure>
   </div>
 </div>
-
+<br>
+<div class="container">
+  <div class="container-fluid">
+    <h2 class="text-center">Regional</h2>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover" style="font-size:11px">
+        <thead>
+          <tr style="background-color:#b30000; color:#fff;">
+            <th scope="col">Province</th>
+            <th scope="col">Confirmed</th>
+            <th scope="col">Deaths</th>
+            <th scope="col">Recovered</th>
+          </tr>
+        </thead>
+        <tbody id="tabel_provinsi">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<br>
 <div class="container">
   <div class="container-fluid">
   <br>
@@ -176,34 +196,48 @@
 
 <script>
 $(document).ready(function(){
-  //get data indonesia (timeline dan paling tinggi)
-  var positif=[]
-  $.get("https://api.covid19api.com/total/dayone/country/indonesia", function(data){
+
+  $.get("https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/arcgis/rest/services/Statistik_Perkembangan_COVID19_Indonesia/FeatureServer/0/query?where=1%3D1&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=", function(data){
+    var obj = JSON.parse(data);
     //paling Tertinggi
-    var meninggal=[]
-    var sembuh=[]
-    var a=0
-    var b=0
-    var c=0
+    var jml_baru_per_hari=[]
+    var jml_meni_per_hari=[]
+    var jml_semb_per_hari=[]
     var hari=[]
-    $.each(data, function(key, items){
-      positif.push(items.Confirmed-a)
-      a=items.Confirmed
-      meninggal.push(items.Deaths-b)
-      b=items.Deaths
-      sembuh.push(items.Recovered-c)
-      c=items.Recovered
-      hari.push(items.Date)
+    var resultDataTimeline=''
+    var arr=[]
+    $.each(obj.features, function(key, items){
+      if (items.attributes.Jumlah_Kasus_Kumulatif !=null) {
+        var ts = new Date(items.attributes.Tanggal);
+        jml_baru_per_hari.push(items.attributes.Jumlah_Kasus_Baru_per_Hari)
+        jml_meni_per_hari.push(items.attributes.Jumlah_Kasus_Meninggal_per_Hari)
+        jml_semb_per_hari.push(items.attributes.Jumlah_Kasus_Sembuh_per_Hari)
+        hari.push(ts.toDateString())
+
+        resultDataTimeline ="<div class='timeline'>"
+            +"<span class='timeline-icon'></span>"
+            +"<span class='year'>" + ts.toDateString() + "</span>"
+            +"<div class='timeline-content'>"
+            +"<p class='description'>"
+            +"NewConfirmed   : " + items.attributes.Jumlah_Kasus_Baru_per_Hari +"<br>"
+            +"TotalConfirmed   : " + items.attributes.Jumlah_Kasus_Kumulatif +"<br>"
+            +"NewDeaths      : " + items.attributes.Jumlah_Kasus_Meninggal_per_Hari +"<br>"
+            +"TotalDeaths      : " + items.attributes.Jumlah_Pasien_Meninggal +"<br>"
+            +"NewRecovered   : " + items.attributes.Jumlah_Kasus_Sembuh_per_Hari +"<br>"
+            +"TotalRecovered   : " + items.attributes.Jumlah_Pasien_Sembuh +"</p>"
+            "</div></div>";
+        arr.push(resultDataTimeline)
+      }
     })
 
-    var positifMax=Math.max(...positif)
-    var indexPos = positif.indexOf(positifMax);
+    var positifMax=Math.max(...jml_baru_per_hari)
+    var indexPos = jml_baru_per_hari.indexOf(positifMax);
 
-    var meninggalMax=Math.max(...meninggal)
-    var indexMen = meninggal.indexOf(meninggalMax);
+    var meninggalMax=Math.max(...jml_meni_per_hari)
+    var indexMen = jml_meni_per_hari.indexOf(meninggalMax);
 
-    var sembuhMax=Math.max(...sembuh)
-    var indexSem = sembuh.indexOf(sembuhMax);
+    var sembuhMax=Math.max(...jml_semb_per_hari)
+    var indexSem = jml_semb_per_hari.indexOf(sembuhMax);
 
     var postPositif ="<div class='text-center'>"
                     +"<p><strong>"
@@ -229,7 +263,8 @@ $(document).ready(function(){
     $('#confirmed').html(postPositif)
     $('#meninggal').html(postMeninggal)
     $('#sembuh').html(postSembuh)
-
+    arr.reverse()
+    $('#timeline').html(arr)
 
     Highcharts.chart('container', {
 
@@ -253,13 +288,13 @@ $(document).ready(function(){
       },
       series: [{
           name: 'Confirmed',
-          data: positif,
+          data: jml_baru_per_hari,
       },{
           name: 'Deaths',
-          data: meninggal,
+          data: jml_meni_per_hari,
       },{
           name: 'Recovered',
-          data: sembuh,
+          data: jml_semb_per_hari,
       }
     ],
 
@@ -279,6 +314,7 @@ $(document).ready(function(){
       }
 
     });
+
 
   })
 })

@@ -1,3 +1,5 @@
+var dataPos=[]
+
 $(document).ready(function(){
 
 var _url="https://api.covid19api.com/summary"
@@ -90,57 +92,59 @@ caches.match(_url).then(function(response){
   return networkUpdate
 })
 
-
-//get summary indonesia
-$.get("https://api.covid19api.com/total/dayone/country/indonesia", function(data){
-  var dataResults=''
-
-  $.each(data, function(key, items){
-  dataResults ="<div>"
-                  +"<table>"
-                  +"<tr>"
-                  +"<td><strong>Date</strong></td>"
-                  +"<td><strong>: "+ items.Date + "</strong></td>"
-                  +"</tr>"
-                  +"<tr>"
-                  +"<td><strong>Confirmed</strong></td>"
-                  +"<td><strong>: "+ items.Confirmed + "</strong></td>"
-                  +"</tr>"
-                  +"<tr>"
-                  +"<td><strong>Deaths</strong></td>"
-                  +"<td><strong>: "+ items.Deaths + "</strong></td>"
-                  +"</tr>"
-                  +"<tr>"
-                  +"<td><strong>Recovered</strong></td>"
-                  +"<td><strong>: "+ items.Recovered + "</strong></td>"
-                  +"</tr>"
-                  +"</table>"
-                  "</div>";
+//Regional
+$.get("https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/arcgis/rest/services/COVID19_Indonesia_per_Provinsi/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json", function(data){
+  var obj = JSON.parse(data);
+  var dataProvinsiResults;
+  $.each(obj.features, function(key, items){
+    dataProvinsiResults +="<tr>"
+                  +"<td>" + items.attributes.Provinsi +"</td>"
+                  +"<td>" + items.attributes.Kasus_Posi +"</td>"
+                  +"<td>" + items.attributes.Kasus_Semb +"</td>"
+                  +"<td>" + items.attributes.Kasus_Meni +"</td>"
+                  "</tr>";
   })
-  $('#indonesia').html(dataResults)
+  $('#tabel_provinsi').html(dataProvinsiResults)
 })
 
+//summary indonesia
+$.get("https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/arcgis/rest/services/Statistik_Perkembangan_COVID19_Indonesia/FeatureServer/0/query?where=1%3D1&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=", function(data){
+  var obj = JSON.parse(data);
 
-//timeline
-$.get("https://api.covid19api.com/total/dayone/country/indonesia", function(data){
-  //data timeline indonesia
-  var dataResults=''
-  var arr=[]
-
-  $.each(data, function(key, items){
-  dataResults ="<div class='timeline'>"
-                  +"<span class='timeline-icon'></span>"
-                  +"<span class='year'>" + items.Date + "</span>"
-                  +"<div class='timeline-content'>"
-                  +"<p class='description'>"
-                  +"Confirmed   : " + items.Confirmed +"<br>"
-                  +"Deaths      : " + items.Deaths +"<br>"
-                  +"Recovered   : " + items.Recovered +"</p>"
-                  "</div></div>";
-  arr.push(dataResults)
+  $.each(obj.features, function(key, items){
+    if (items.attributes.Jumlah_Kasus_Kumulatif !=null) {
+      var ts = new Date(items.attributes.Tanggal);
+      dataResults ="<div>"
+                        +"<table>"
+                        +"<tr>"
+                        +"<td><strong>Date</strong></td>"
+                        +"<td><strong>: "+ ts.toDateString() + "</strong></td>"
+                        +"</tr>"
+                        +"<tr>"
+                        +"<td><strong>Confirmed</strong></td>"
+                        +"<td><strong>: "+ items.attributes.Jumlah_Kasus_Kumulatif + "</strong></td>"
+                        +"</tr>"
+                        +"<tr>"
+                        +"<td><strong>Deaths</strong></td>"
+                        +"<td><strong>: "+ items.attributes.Jumlah_Pasien_Meninggal + "</strong></td>"
+                        +"</tr>"
+                        +"<tr>"
+                        +"<td><strong>Recovered</strong></td>"
+                        +"<td><strong>: "+ items.attributes.Jumlah_Pasien_Sembuh + "</strong></td>"
+                        +"</tr>"
+                        +"<tr>"
+                        +"<td><strong>Deaths</strong></td>"
+                        +"<td><strong>: "+ items.attributes.Persentase_Pasien_Meninggal + "%</strong></td>"
+                        +"</tr>"
+                        +"<tr>"
+                        +"<td><strong>Recovered</strong></td>"
+                        +"<td><strong>: "+ items.attributes.Persentase_Pasien_Sembuh + "%</strong></td>"
+                        +"</tr>"
+                        +"</table>"
+                        "</div>";
+    }
   })
-  arr.reverse()
-  $('#timeline').html(arr)
+  $('#indonesia').html(dataResults)
 })
 
 })
