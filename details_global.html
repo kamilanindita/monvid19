@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <title>Monvid-19</title>
 </head>
@@ -56,43 +57,65 @@
   <div class="container-fluid">
     <h2 class="text-center">Asean</h2>
     <div class="table-responsive">
-      <table class="table table-sm table-hover" style="font-size:11px">
-        <thead>
-          <tr style="background-color:#000066; color:#fff">
-            <th scope="col">Country</th>
-            <th scope="col">NewConfirmed</th>
-            <th scope="col">TotalConfirmed</th>
-            <th scope="col">NewDeaths</th>
-            <th scope="col">TotalDeaths</th>
-            <th scope="col">NewRecovered</th>
-            <th scope="col">TotalRecovered</th>
-          </tr>
-        </thead>
-        <tbody id="tabel_asean">
-        </tbody>
-      </table>
-    </div>
+    <table id="tbl_asean" class="table table-striped table-bordered" style="width:100%;font-size:12px;">
+            <thead>
+                <tr style="background-color:#000066; color:#fff">
+                    <th>Contry</th>
+                    <th>NewComfirmed</th>
+                    <th>TotalComfirmed</th>
+                    <th>NewDeaths</th>
+                    <th>TotalDeaths</th>
+                    <th>NewRecovered</th>
+                    <th>TotalRecovered</th>
+                </tr>
+            </thead>
+            <tbody id="tabel_asean">
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Contry</th>
+                    <th>NewComfirmed</th>
+                    <th>TotalComfirmed</th>
+                    <th>NewDeaths</th>
+                    <th>TotalDeaths</th>
+                    <th>NewRecovered</th>
+                    <th>TotalRecovered</th>
+                </tr>
+            </tfoot>
+        </table>
+      </div>
   </div>
   <br>
   <div class="container-fluid">
     <h2 class="text-center">Global</h2>
     <div class="table-responsive">
-      <table class="table table-sm table-hover" style="font-size:11px">
-        <thead>
-          <tr style="background-color:#b30000; color:#fff">
-            <th scope="col">Country</th>
-            <th scope="col">NewConfirmed</th>
-            <th scope="col">TotalConfirmed</th>
-            <th scope="col">NewDeaths</th>
-            <th scope="col">TotalDeaths</th>
-            <th scope="col">NewRecovered</th>
-            <th scope="col">TotalRecovered</th>
-          </tr>
-        </thead>
-        <tbody id="tabel_country">
-        </tbody>
-      </table>
-    </div>
+    <table id="tbl_country" class="table table-striped table-bordered" style="width:100%;font-size:12px;">
+            <thead>
+                <tr style="background-color:#b30000; color:#fff">
+                    <th>Contry</th>
+                    <th>NewComfirmed</th>
+                    <th>TotalComfirmed</th>
+                    <th>NewDeaths</th>
+                    <th>TotalDeaths</th>
+                    <th>NewRecovered</th>
+                    <th>TotalRecovered</th>
+                </tr>
+            </thead>
+            <tbody id="tabel_country">
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Contry</th>
+                    <th>NewComfirmed</th>
+                    <th>TotalComfirmed</th>
+                    <th>NewDeaths</th>
+                    <th>TotalDeaths</th>
+                    <th>NewRecovered</th>
+                    <th>TotalRecovered</th>
+                </tr>
+            </tfoot>
+        </table>
+      </div>
 </div>
 
 
@@ -115,8 +138,85 @@
 <script src="/js/jquery-3.4.1.js"></script>
 <script src="/js/popper.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
+<!-- <script src="/js/main.js"></script> -->
 
+<script  type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script  type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script  type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+  $.get("https://api.covid19api.com/summary", function(data){
+    //summary globals
+    var dataResults ="<table>"
+                    +"<tr>"
+                    +"<td><strong>NewConfirmed</strong></td>"
+                    +"<td><strong>: "+ data.Global.NewConfirmed +"</strong></td>"
+                    +"</tr>"
+                    +"<tr>"
+                    +"<td><strong>TotalConfirmed</strong></td>"
+                    +"<td><strong>: "+ data.Global.TotalConfirmed +"</strong></td>"
+                    +"</tr>"
+                    +"<tr>"
+                    +"<td><strong>NewDeaths</strong></td>"
+                    +"<td><strong>: "+ data.Global.NewDeaths +"</strong></td>"
+                    +"</tr>"
+                    +"<tr>"
+                    +"<td><strong>TotalDeaths</strong></td>"
+                    +"<td><strong>: "+ data.Global.TotalDeaths +"</strong></td>"
+                    +"</tr>"
+                    +"<tr>"
+                    +"<td><strong>NewRecovered</strong></td>"
+                    +"<td><strong>: "+ data.Global.NewRecovered +"</strong></td>"
+                    +"</tr>"
+                    +"<tr>"
+                    +"<td><strong>TotalRecovered</strong></td>"
+                    +"<td><strong>: "+ data.Global.TotalRecovered +"</strong></td>"
+                    +"</tr>"
+                    +"</table>";
+    $('#globals').html(dataResults)
+
+    //asean
+    var dataAseanResults;
+    $.each(data.Countries, function(key, items){
+      if(items.CountryCode == 'BN' || items.CountryCode == 'ID' || items.CountryCode == 'KH' || items.CountryCode == 'LA' || items.CountryCode == 'MM' || items.CountryCode == 'MY' || items.CountryCode == 'PH' || items.CountryCode == 'SG' || items.CountryCode == 'TH' || items.CountryCode == 'TL' || items.CountryCode == 'VN'){
+        dataAseanResults +="<tr>"
+                      +"<th>" + items.Country +"</th>"
+                      +"<td>" + items.NewConfirmed +"</td>"
+                      +"<td>" + items.TotalConfirmed +"</td>"
+                      +"<td>" + items.NewDeaths +"</td>"
+                      +"<td>" + items.TotalDeaths +"</td>"
+                      +"<td>" + items.NewRecovered +"</td>"
+                      +"<td>" + items.TotalRecovered +"</td>"
+                      "</tr>";
+      }
+    })
+    $('#tabel_asean').html(dataAseanResults)
+    $('#tbl_asean').DataTable();
+
+    //global
+    var dataCountryResults=''
+    $.each(data.Countries, function(key, items){
+    dataCountryResults +="<tr>"
+                    +"<th>" + items.Country +"</th>"
+                    +"<td>" + items.NewConfirmed +"</td>"
+                    +"<td>" + items.TotalConfirmed +"</td>"
+                    +"<td>" + items.NewDeaths +"</td>"
+                    +"<td>" + items.TotalDeaths +"</td>"
+                    +"<td>" + items.NewRecovered +"</td>"
+                    +"<td>" + items.TotalRecovered +"</td>"
+                    "</tr>";
+    })
+    $('#tabel_country').html(dataCountryResults)
+    $('#tbl_country').DataTable();
+
+  //end get
+  })
+
+
+})
+</script>
 
 </body>
 </html>

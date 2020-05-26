@@ -1,4 +1,4 @@
-var CACHE_NAME = 'my-site-cache-v4';
+var CACHE_NAME = 'my-site-cache-v2';
 var urlsToCache = [
   '/',
   '/fallback.json',
@@ -18,6 +18,7 @@ var urlsToCache = [
   '/images/icon.png',
   '/images/logo.png',
   '/images/logo-covid19api.png',
+  '/images/logo-gugas.png',
 ];
 
 self.addEventListener('install', function(event) {

@@ -35,37 +35,6 @@ function renderPage(data){
                   +"</tr>"
                   +"</table>";
   $('#globals').html(dataResults)
-  //data country
-  var dataCountryResults=''
-  $.each(data.Countries, function(key, items){
-  dataCountryResults +="<tr>"
-                  +"<th>" + items.Country +"</th>"
-                  +"<td>" + items.NewConfirmed +"</td>"
-                  +"<td>" + items.TotalConfirmed +"</td>"
-                  +"<td>" + items.NewDeaths +"</td>"
-                  +"<td>" + items.TotalDeaths +"</td>"
-                  +"<td>" + items.NewRecovered +"</td>"
-                  +"<td>" + items.TotalRecovered +"</td>"
-                  "</tr>";
-  })
-  $('#tabel_country').html(dataCountryResults)
-
-  var dataAseanResults;
-  $.each(data.Countries, function(key, items){
-    if(items.CountryCode == 'BN' || items.CountryCode == 'ID' || items.CountryCode == 'KH' || items.CountryCode == 'LA' || items.CountryCode == 'MM' || items.CountryCode == 'MY' || items.CountryCode == 'PH' || items.CountryCode == 'SG' || items.CountryCode == 'TH' || items.CountryCode == 'TL' || items.CountryCode == 'VN'){
-      dataAseanResults +="<tr>"
-                    +"<th>" + items.Country +"</th>"
-                    +"<td>" + items.NewConfirmed +"</td>"
-                    +"<td>" + items.TotalConfirmed +"</td>"
-                    +"<td>" + items.NewDeaths +"</td>"
-                    +"<td>" + items.TotalDeaths +"</td>"
-                    +"<td>" + items.NewRecovered +"</td>"
-                    +"<td>" + items.TotalRecovered +"</td>"
-                    "</tr>";
-    }
-  })
-
-  $('#tabel_asean').html(dataAseanResults)
 
 }
 
@@ -90,21 +59,6 @@ caches.match(_url).then(function(response){
   }
 }).catch(function(){
   return networkUpdate
-})
-
-//Regional
-$.get("https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/arcgis/rest/services/COVID19_Indonesia_per_Provinsi/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json", function(data){
-  var obj = JSON.parse(data);
-  var dataProvinsiResults;
-  $.each(obj.features, function(key, items){
-    dataProvinsiResults +="<tr>"
-                  +"<td>" + items.attributes.Provinsi +"</td>"
-                  +"<td>" + items.attributes.Kasus_Posi +"</td>"
-                  +"<td>" + items.attributes.Kasus_Semb +"</td>"
-                  +"<td>" + items.attributes.Kasus_Meni +"</td>"
-                  "</tr>";
-  })
-  $('#tabel_provinsi').html(dataProvinsiResults)
 })
 
 //summary indonesia
