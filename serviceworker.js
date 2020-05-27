@@ -10,7 +10,6 @@ var urlsToCache = [
   '/images/global.webp',
   '/images/indo.webp',
   '/images/icon.png',
-  '/images/logo.webp',
   '/images/logo-covid19api.webp',
   '/images/logo-gugas.webp',
 ];
