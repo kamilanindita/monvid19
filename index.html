@@ -10,16 +10,39 @@
 
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/footer.css">
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <title>Monvid-19</title>
+  <style>
+    .vertical-center {
+      min-height: 95%;  /* Fallback for browsers do NOT support vh unit */
+      min-height: 95vh; /* These two lines are counted as one :-)       */
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+    }
+
+    @media only screen and (max-width:768px) {
+      #table-home {
+        font-size: 15px;
+        margin-top:-15px;
+      }
+      #btn-home {
+          font-size: 12px;
+      }
+    }
+
+  </style>
 </head>
 <body>
 
 <header>
-  <img class="mx-auto d-block mt-2" src="/images/logo.png" alt="logo"></a>
-  <nav class="navbar fixed-bottom navbar-expand navbar-light bg-white">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white" style="height:40px;">
+    <div class="navbar-nav mx-auto text-center">
+      <a class="navbar-brand active" href="index.html" style="margin-top:-10px;"><img src="/images/logo.webp" style="height: 30px;margin:auto;"></a>
+    </div>
+  </nav>
+  <nav class="navbar fixed-bottom navbar-expand navbar-light bg-white" style="height:70px;">
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav mx-auto text-center">
         <a class="nav-item nav-link active" href="index.html">
@@ -40,25 +63,25 @@
   </nav>
 </header>
 
-<div style="margin-top:10px;" class="container-fluid">
+<div class="container-fluid vertical-center">
     <div class="row">
       <div class="col-sm-6">
-        <div class="card text-white">
-          <img class="card-img-top" src="/images/global.jpg" style="opacity:1;min-height:294px" alt="global">
+        <div class="card text-white" id="table-home">
+          <img class="card-img-top" src="/images/global.webp" style="min-height:230px" alt="global">
           <div class="card-img-overlay">
-            <h4 class="card-title text-center">Global</h4>
+            <h5 class="card-title text-center" id="table-home">Global</h5>
             <div id="globals" class="card-text">Loading...</div>
-            <a href="details_global.html" class="btn btn-primary">Details</a>
+            <a href="details_global.html" class="btn btn-primary" id="btn-home">Details</a>
           </div>
         </div>
       </div>
       <div class="col-sm-6">
-        <div class="card text-white">
-          <img class="card-img-top" src="/images/indo.jpg" style="opacity:1;min-height:294px" alt="indonesia">
+        <div class="card text-white" id="table-home">
+          <img class="card-img-top" src="/images/indo.webp" style="min-height:230px" alt="indonesia">
           <div class="card-img-overlay">
-            <h4 class="card-title text-center">Indonesia</h4>
+            <h5 class="card-title text-center" id="table-home">Indonesia</h5>
             <div id="indonesia" class="card-text">Loading...</div>
-            <a href="details_indonesia.html" class="btn btn-primary">Details</a>
+            <a href="details_indonesia.html" class="btn btn-primary" id="btn-home">Details</a>
           </div>
         </div>
       </div>
@@ -66,26 +89,9 @@
 </div>
 
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="copyright">
-          &copy;Copyright 2020 <strong>Kamil Anindita</strong>.
-        </div>
-        <div class="credits">
-          Designed with <strong><i class="fa fa-heart" style="color:red"></i></strong></a>
-        </div>
-  </div>
-</footer>
-<br>
-<br>
-<br>
-<br>
-
-
-<script src="/js/jquery-3.4.1.js"></script>
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<script  type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
 
 

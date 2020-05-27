@@ -1,24 +1,18 @@
-var CACHE_NAME = 'my-site-cache-v2';
+var CACHE_NAME = 'my-site-cache-v4';
 var urlsToCache = [
   '/',
   '/fallback.json',
   '/manifest.json',
-  '/css/bootstrap.min.css',
   '/css/header.css',
   '/css/footer.css',
   '/css/timeline.css',
   '/js/main.js',
-  '/js/jquery-3.4.1.js',
-  '/js/bootstrap.js',
-  '/js/bootstrap.min.js',
-  '/js/popper.min.js',
-  '/images/about.png',
-  '/images/global.jpg',
-  '/images/indo.jpg',
+  '/images/global.webp',
+  '/images/indo.webp',
   '/images/icon.png',
-  '/images/logo.png',
-  '/images/logo-covid19api.png',
-  '/images/logo-gugas.png',
+  '/images/logo.webp',
+  '/images/logo-covid19api.webp',
+  '/images/logo-gugas.webp',
 ];
 
 self.addEventListener('install', function(event) {
