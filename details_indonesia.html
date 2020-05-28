@@ -217,7 +217,12 @@
         <div class="col-md-12">
             <div class="main-timeline4">
                 <div id="timeline"></div>
+                <div id="alltimeline" style="display:none;"></div>
             </div>
+            <br>
+            <div class="text-center">
+              <button class="btn btn-info" onclick="myTimeline()" id="btn-timeline">Show All</button>
+			</div>
         </div>
     </div>
   </div>
@@ -256,6 +261,21 @@
 
 
 <script>
+
+function myTimeline(){
+  var y = document.getElementById("timeline");
+  var x = document.getElementById("alltimeline");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none";
+    document.getElementById('btn-timeline').innerHTML='Show Less'
+  } else {
+    x.style.display = "none";
+    y.style.display = "block";
+    document.getElementById('btn-timeline').innerHTML='Show All'
+  }
+}
+
 $(document).ready(function(){
 
   $.get("https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/arcgis/rest/services/Statistik_Perkembangan_COVID19_Indonesia/FeatureServer/0/query?where=1%3D1&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=", function(data){
@@ -267,6 +287,7 @@ $(document).ready(function(){
     var hari=[]
     var resultDataTimeline=''
     var arr=[]
+	var lessarr=[]
     $.each(obj.features, function(key, items){
       if (items.attributes.Jumlah_Kasus_Kumulatif !=null) {
         var ts = new Date(items.attributes.Tanggal);
@@ -325,7 +346,9 @@ $(document).ready(function(){
     $('#meninggal').html(postMeninggal)
     $('#sembuh').html(postSembuh)
     arr.reverse()
-    $('#timeline').html(arr)
+    $('#alltimeline').html(arr)
+    lessarr=arr.slice(0, 10);
+    $('#timeline').html(cbarr)
 
     Highcharts.chart('container', {
 
