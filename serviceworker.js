@@ -3,8 +3,6 @@ var urlsToCache = [
   '/',
   '/fallback.json',
   '/manifest.json',
-  '/css/header.css',
-  '/css/footer.css',
   '/css/timeline.css',
   '/js/main.js',
   '/images/global.webp',
