@@ -1,6 +1,10 @@
 var CACHE_NAME = 'my-site-cache-v4';
 var urlsToCache = [
   '/',
+  '/index.html',
+  '/details_global.html',
+  '/details_indonesia.html',
+  '/about.html',
   '/fallback.json',
   '/manifest.json',
   '/css/timeline.css',
